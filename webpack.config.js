@@ -1,7 +1,13 @@
+const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
+
+const os = require( 'os' );
+const networkInterfaces = os.networkInterfaces();
+const localIP = networkInterfaces['Ethernet'][1]["address"];
+console.log( "ip:", localIP );
 
 const indexHtmlName = "index.html";
 const mainJSName = "index.js";
@@ -15,6 +21,7 @@ module.exports = {
     publicPath: "/"
   },
   devServer: {
+    host: localIP,
     hot: true,
     historyApiFallback: true,
     port: 9001
@@ -31,6 +38,12 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[hash].css',
       chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+    }),
+    // this allows webpack to define static variables for frontend builds
+    new webpack.DefinePlugin({
+      "IP_ADDRESS": JSON.stringify(localIP),
+      "HOSTNAME": JSON.stringify("localhost"),
+      "WS_PORT": JSON.stringify(61337)
     })
   ],
   module: {

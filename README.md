@@ -35,3 +35,7 @@ https://dev.to/sauravmh/building-a-multiplayer-game-using-websockets-1n63
 
 -- nodemon
 https://www.digitalocean.com/community/tutorials/workflow-nodemon
+
+
+-- tracking users
+https://medium.com/@willrigsbee/how-to-keep-track-of-clients-with-websockets-1a018c23bbfc
