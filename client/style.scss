@@ -10,19 +10,22 @@ $chat-bg-color: #fff;
   margin:0;
 }
 
-html, body{
+html, body {
+  height: 100%;
   width: 100%;
 }
 
 body {
   font-family: $font;
   color: $primary-color;
-  background-color: $background-color;
+  // background-color: $background-color;
+  background: rgb(176,171,255);
+  background: linear-gradient(149deg, rgba(176,171,255,1) 0%, rgba(118,118,255,1) 38%, rgba(0,157,189,1) 100%);
 }
 
 #Container{
   max-width: 800px;
-  margin: 0 auto;
+  margin: 100px auto 0;
   display: flex; /* or inline-flex */
   flex-wrap: wrap;
   align-items: stretch;
@@ -34,18 +37,78 @@ body {
   border: 1px solid black;
   min-height: 450px;
   max-height: 600px;
-  overflow: auto;
 }
 
 #ChatPeople{
+  overflow: auto;
   ul{
     list-style: none;
   }
-  width: 25%;
+  width: 26%;
+  li{
+    padding: 5px;
+  }
+  .dot{
+    height: 10px;
+    width: 10px;
+    margin-right:5px;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+  }
+}
+
+#You{
+  display: flex;
+  padding: 5px;
+  input, button{
+    box-sizing: border-box;
+    padding: 2.5px;
+    font-size: 0.9rem;
+  }
+  input{
+    width: 65%;
+  }
+  button{
+    width: 35%;
+  }
 }
 
 #ChatBox{
-  width: 75%;
+  width: 74%;
+  padding: 10px;
+  background-color: #eee;
+}
+
+#ChatContent{
+  width: 100%;
+  height: 90%;
+  margin-bottom: 2.7%;
+  background: #fff;
+  padding: 4px;
+  overflow: auto;
+  p{
+    display: block;
+    font-size: 0.95rem;
+    padding: 2px;
+  }
+}
+
+#ChatInput{
+  width: 100%;
+  height: 5%;
+  display: flex;
+  input, button{
+    box-sizing: border-box;
+    padding: 2.5px;
+    font-size: 0.9rem;
+  }
+  input{
+    width: 80%;
+  }
+  button{
+    width: 20%;
+  }
 }
 
 

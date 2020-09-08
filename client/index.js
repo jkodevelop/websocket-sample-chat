@@ -15,12 +15,12 @@ ws.addEventListener('open', () => {
   ws.send(JSON.stringify({
     "userId": userId
   }));
-  $('#ChatBox').append(`<p>connecting to chat ... </p>`);
+  $('#ChatContent').append(`<p>connecting to chat ... </p>`);
 });
  
 ws.addEventListener('message', event => {
   // The `event` object is a typical DOM event object, and the message data sent
   // by the server is stored in the `data` property
   console.log('Received:', event.data);
-  $('#ChatBox').append(`<p>${event.data}</p>`);
+  $('#ChatContent').append(`<p>${event.data}</p>`);
 });
