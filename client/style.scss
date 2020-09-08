@@ -2,8 +2,56 @@
 
 $font: "Karla", sans-serif;
 $primary-color: #3e6f9e;
+$background-color: #d2d2d2;
+$chat-bg-color: #fff;
+
+*{
+  padding:0;
+  margin:0;
+}
+
+html, body{
+  width: 100%;
+}
 
 body {
   font-family: $font;
   color: $primary-color;
+  background-color: $background-color;
 }
+
+#Container{
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex; /* or inline-flex */
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+#ChatPeople, #ChatBox{
+  background-color: $chat-bg-color;
+  box-sizing: border-box;
+  border: 1px solid black;
+  min-height: 450px;
+  max-height: 600px;
+  overflow: auto;
+}
+
+#ChatPeople{
+  ul{
+    list-style: none;
+  }
+  width: 25%;
+}
+
+#ChatBox{
+  width: 75%;
+}
+
+
+
+
+
+
+
+
