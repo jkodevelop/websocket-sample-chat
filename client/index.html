@@ -4,136 +4,48 @@
   <meta charset="UTF-8">
   <title>Chat</title>
 </head>
-<body>
+<body class="flex">
 
-  <div id="Container">
+  <div id="Container" class="flex">
 
-    <div id="ChatPeople" class="chat-output">
-      <div id="You">
-        <input placeholder="display name" />
-        <button id="NameConnect">connect</button>
+    <div id="ChatPeople" class="chat-output flex">
+      <div id="You" class="pad-five">
+        <div class="user-steps user-step-1 flex">
+            <input placeholder="display name" />
+            <button id="NameConnect">connect</button>
+        </div>
+        <div class="user-steps user-step-2 flex pad-five">
+          <li>
+            <i>Connected as: </i><br />
+            <span class="dot" id="YourDot"></span><span id="YourName">Jason Ko</span>
+          </li>
+        </div>
       </div>
       <ul>
-        <li><span class="dot"></span>Jason Ko</li>
-        <li><span class="dot"></span>Queen M</li>
-        <li><span class="dot"></span>Jason Ko</li>
-        <li><span class="dot"></span>Queen M Jason Ko fffueen M Jason Ko</li>
-        <li><span class="dot"></span>Queen M</li>
-        <li><span class="dot"></span>Jason Ko</li>
-        <li><span class="dot"></span>Queen M</li>
-        <li><span class="dot"></span>Jason Ko</li>
-        <li><span class="dot"></span>Jason Ko</li>
-        <li><span class="dot"></span>Queen M</li>
-        <li><span class="dot"></span>Jason Ko</li><li><span class="dot"></span>Jason Ko</li>
-        <li><span class="dot"></span>Queen M</li>
-        <li><span class="dot"></span>Jason Ko</li><li><span class="dot"></span>Jason Ko</li>
-        <li><span class="dot"></span>Queen M</li>
-        <li><span class="dot"></span>Jason Ko</li><li><span class="dot"></span>Jason Ko</li>
-        <li><span class="dot"></span>Queen M</li>
-        <li><span class="dot"></span>Jason Ko</li>
+        <li class="pad-five waiting">waiting for others to connect</li>
+        <li class="pad-five"><span class="dot"></span>Jason Ko</li>
       </ul>
     </div>
-    <div id="ChatBox" class="chat-output">
+    <div id="ChatBox" class="chat-output flex">
       <div id="ChatContent">
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p><p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
-        <p>ggggggggggggggggg</p>
+        <p>
+            <span>ggggggggggggggggg ggggggg ggggggg gggg ggggggggggggg gggggggggggggggggggg gggggggggg ggggggg ggggggggggg gggggggggggggggg gggggggggggggggggggggggg gggggggg ggggggggg gggggggg ggggggggg  ggggggggg gggggggg ggggggg gggggggggg
+            <br />
+            <i style="color:blue;">may 3/3/3</i></span>
+            <em class="triangle"></em>
+        </p>
+        <p class="your-msg">
+            <span class="your-msg">dddd ggggggggggggggggg
+            <br />
+            <i>jason ko, 3/3/10</i></span>
+            <em class="triangle"></em>
+        </p>
       </div>
-      <div id="ChatInput" class="chat-input">
+      <div id="ChatInput" class="chat-input flex">
         <input id="MsgInput" type="text" name="msg" placeholder="msg" />
         <button id="Send">send</button>
       </div>
     </div>
-
-
-    
   </div>
-
-
-
-
 </body>
 </html>

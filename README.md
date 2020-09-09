@@ -39,3 +39,8 @@ https://www.digitalocean.com/community/tutorials/workflow-nodemon
 
 -- tracking users
 https://medium.com/@willrigsbee/how-to-keep-track-of-clients-with-websockets-1a018c23bbfc
+
+
+-- read (flexbox css)
+https://medium.com/quick-code/building-a-chat-application-using-flexbox-e6936c3057ef
+https://bilianavaleva.com/conversational-ui-with-flexbox/
