@@ -2,7 +2,7 @@ import "./style.scss";
 import * as $ from 'jquery';
 import { getUserId, saveUserName, saveHue } from './util/user.js';
 import { userConnected, userDisconnected, addUserToList } from './util/uistate.js';
-import { systemMessage } from './util/chat.js';
+import { msgProcessing, systemMessage } from './util/chat.js';
 
 // local variable declarations
 let ws;
@@ -33,28 +33,24 @@ function connectToWS(e){
     // step 2: open a connection with our web-socket server
     ws.addEventListener('open', () => {
       // Send a message to the WebSocket server
-      
       ws.send(JSON.stringify({
-        "userId": userId,
-        "name": name,
-        "hue": hue,
+        "type":"addUser",
+        "user": {
+          "userId": userId,
+          "name": name,
+          "hue": hue,
+        },
       }));
       systemMessage($chatContent,'connecting to chat....');
       userConnected(name, hue);
+
     });
     
     // step 3(continuous): now we wait for messages from server
     ws.addEventListener('message', event => {
       // The `event` object is a typical DOM event object, and the message data sent
       // by the server is stored in the `data` property
-      systemMessage($chatContent, `${event.data}`);
-      if(event.data.indexOf('Please welcome') >= 0){
-        addUserToList({
-          "userId": 'xxxx',
-          "name": 'test',
-          "hue": 2,
-        });
-      }
+      msgProcessing($chatContent, event.data);
     });
 
   }

@@ -1,5 +1,27 @@
 // chat update
 import * as $ from 'jquery';
+import { addUserToList } from './uistate.js';
+
+export const msgProcessing = ($chat, msg) => {
+  try{
+    var msgJSON = JSON.parse(msg);
+    var type = msgJSON.type;
+    switch(type){
+      case 'server':
+        systemMessage($chat, `${msgJSON.msg}`);
+        break;
+      case 'addUser':
+        systemMessage($chat, `${msgJSON.msg}`);
+        addUserToList(msgJSON.user);
+        break;
+      default:
+        console.log('UNKNOWN: ', msgJSON);
+        break;
+    }
+  }catch(e){
+    console.log('ERR: ', e, msg);
+  }
+}
 
 export const systemMessage = ($chat, msg) => {
   // $chat.append(`<p>${msg}</p>`);

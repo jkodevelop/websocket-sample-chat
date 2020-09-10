@@ -5,7 +5,7 @@ const msg = require('./msg.js');
 
 const wss = new WebSocket.Server({ port: wsPortNum });
 
-var activeUsers = {};
+const activeUsers = {};
 
 function broadcast(wss, currentClient, data){
   wss.clients.forEach(function each(client) {
@@ -15,19 +15,37 @@ function broadcast(wss, currentClient, data){
   });
 }
 
+
+function processMsg(uId, message, client){
+  console.log('received: %s', message);
+  try{
+    let msgJSON = JSON.parse(message);
+    let type = msgJSON.type;
+    switch(type){
+      case 'addUser':
+        let user = msgJSON.user
+        activeUsers[uId] = user;
+        // send welcome message back to source
+        client.send(msg.systemMsg(`Welcome: ${user.name}`));
+        // tell everyone else there is someone new
+        broadcast(wss, client, msg.newUserMsg(user));
+        break;
+      default:
+        console.log('UNKNOWN: ', msgJSON);
+        break;
+    }
+  }catch(e){
+    console.log('ERR: ', e, msg);
+  }
+}
+
+
 // on('connection') handles when a client connects with out websocket server
 wss.on('connection', function connection(client) {
   // on('message') handles when the client sends a message
   let uId = Date.now() + Math.floor(Math.random() * 1000);
   client.on('message', function onMsg(message) {
-    console.log('received: %s', message);
-    // send message to the client that sent the original message
-    let user = JSON.parse(message);
-    activeUsers[uId] = user;
-    
-    client.send(msg.systemMsg(`Welcome: ${user.name}`));
-    broadcast(wss, client, msg.systemMsg(`Please welcome: ${user.name}`));
-
+    processMsg(uId, message, client);
     console.log('these people are connected: ', activeUsers);
   });
 
