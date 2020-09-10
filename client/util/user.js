@@ -19,3 +19,13 @@ export const saveUserName = (name) => {
 export const getUserName = () => {
   localStorage.getItem('name');
 }
+
+export const removeHue = () => {
+  localStorage.removeItem('hue');
+}
+export const saveHue = (hue) => {
+  localStorage.setItem('hue', hue);
+}
+export const getHue = () => {
+  localStorage.getItem('hue');
+}

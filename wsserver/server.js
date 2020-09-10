@@ -1,6 +1,7 @@
 // server.js
 let wsPortNum = 61337;
 const WebSocket = require('ws');
+const msg = require('./msg.js');
 
 const wss = new WebSocket.Server({ port: wsPortNum });
 
@@ -24,8 +25,8 @@ wss.on('connection', function connection(client) {
     let user = JSON.parse(message);
     activeUsers[uId] = user;
     
-    client.send(`Welcome: ${user.name}`);
-    broadcast(wss, client, `Please welcome: ${user.name}`);
+    client.send(msg.systemMsg(`Welcome: ${user.name}`));
+    broadcast(wss, client, msg.systemMsg(`Please welcome: ${user.name}`));
 
     console.log('these people are connected: ', activeUsers);
   });
@@ -38,5 +39,5 @@ wss.on('connection', function connection(client) {
   });
   
   // when client connects for first time, the server greets them with .send
-  client.send(`You are connected!`);
+  client.send(msg.systemMsg(`You are connected!`));
 });
