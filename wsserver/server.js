@@ -7,19 +7,25 @@ const wss = new WebSocket.Server({ port: wsPortNum });
 var activeUsers = {};
 
 // on('connection') handles when a client connects with out websocket server
-wss.on('connection', function connection(ws) {
+wss.on('connection', function connection(client) {
   // on('message') handles when the client sends a message
-  ws.on('message', function incoming(message) {
+  let uId = Date.now() + Math.floor(Math.random() * 1000);
+  client.on('message', function onMsg(message) {
     console.log('received: %s', message);
     // send message to the client that sent the original message
     let user = JSON.parse(message);
-    activeUsers[user.userId] = {};
-    ws.send(`Got your message: ${message}`);
+    activeUsers[uId] = user;
+    client.send(`Welcome: ${user.name}`);
+    console.log('these people are connected: ', activeUsers);
+  });
 
-    console.log('this people are connected: ', activeUsers);
-
+  client.on('close', function onClose(req) {
+    // user disconnected
+    console.log('this user is disconnected: ', req, uId);
+    delete activeUsers[uId];
+    console.log('these people are still connected: ', activeUsers);
   });
   
   // when client connects for first time, the server greets them with .send
-  ws.send('you are connected!!!!');
+  client.send(`You are connected!`);
 });

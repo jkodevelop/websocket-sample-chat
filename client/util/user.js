@@ -10,3 +10,12 @@ export const getUserId = () => {
   return localStorage.getItem('uId');
 }
 
+export const removeUserName = () => {
+  localStorage.removeItem('name');
+}
+export const saveUserName = (name) => {
+  localStorage.setItem('name', name);
+}
+export const getUserName = () => {
+  localStorage.getItem('name');
+}

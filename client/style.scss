@@ -6,6 +6,9 @@ $chat-bg-color: #fff;
 $your-msg-bg-color: #00a8d8;
 $box-bg-color: #eee;
 
+$chat-max-h: 800px;
+$chat-min-h: 650px;
+
 *{
   padding:0;
   margin:0;
@@ -21,7 +24,7 @@ body {
   font-family: $font;
   color: $primary-color;
   background: rgb(176,171,255);
-  background: linear-gradient(149deg, rgba(176,171,255,1) 0%, rgba(118,118,255,1) 38%, rgba(0,157,189,1) 100%);
+  background: linear-gradient(150deg, rgba(176,171,255,1) 0%, rgba(118,118,255,1) 38%, rgba(0,157,189,1) 100%);
   // vertical and horizontal center
   align-items: center;
   justify-content: center;
@@ -46,8 +49,8 @@ input, button{
 #ChatPeople, #ChatBox{
   background-color: $chat-bg-color;
   border: 1px solid black;
-  min-height: 450px;
-  max-height: 600px;
+  min-height: $chat-min-h;
+  max-height: $chat-max-h;
   flex-direction: column;
 }
 
@@ -69,6 +72,13 @@ input, button{
   }
   .user-step-2{
     background-color: #efefef;
+  }
+  #Disconnect{
+    font-size: 0.8em;
+    margin-top: 10px;
+    padding: 2px;
+    background-color: #fff;
+    cursor: pointer;
   }
 }
 
@@ -97,7 +107,7 @@ input, button{
         border-width: 15px 0 0 15px;
         border-color: $your-msg-bg-color transparent transparent transparent;
         right: 10px;
-        bottom: -10px;
+        bottom: 8px;
         left: auto;
       }
     }
@@ -108,7 +118,7 @@ input, button{
     font-size: 0.95rem;
     display: inline-table;
     max-width: 80%;
-    margin: 5px 2px;
+    margin: 2px 2px 20px;
     padding: 12px;
     &.your-msg{
       background-color: $your-msg-bg-color;
@@ -157,7 +167,7 @@ input, button{
   border-color: $box-bg-color transparent transparent transparent;
   position: absolute;
   left: 10px;
-  bottom: -10px;
+  bottom: 8px;
 }
 
 

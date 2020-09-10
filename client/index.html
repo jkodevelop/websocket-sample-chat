@@ -11,41 +11,34 @@
     <div id="ChatPeople" class="chat-output flex">
       <div id="You" class="pad-five">
         <div class="user-steps user-step-1 flex">
-            <input placeholder="display name" />
+            <input id="Name" placeholder="display name" />
             <button id="NameConnect">connect</button>
         </div>
-        <div class="user-steps user-step-2 flex pad-five">
+        <div class="user-steps user-step-2 flex pad-five hide">
           <li>
             <i>Connected as: </i><br />
             <span class="dot" id="YourDot"></span><span id="YourName">Jason Ko</span>
+            <a id="Disconnect">Disconnect</a>
           </li>
         </div>
       </div>
-      <ul>
+      <!-- <ul>
         <li class="pad-five waiting">waiting for others to connect</li>
         <li class="pad-five"><span class="dot"></span>Jason Ko</li>
-      </ul>
+      </ul> -->
     </div>
+
     <div id="ChatBox" class="chat-output flex">
       <div id="ChatContent">
-        <p>
-            <span>ggggggggggggggggg ggggggg ggggggg gggg ggggggggggggg gggggggggggggggggggg gggggggggg ggggggg ggggggggggg gggggggggggggggg gggggggggggggggggggggggg gggggggg ggggggggg gggggggg ggggggggg  ggggggggg gggggggg ggggggg gggggggggg
-            <br />
-            <i style="color:blue;">may 3/3/3</i></span>
-            <em class="triangle"></em>
-        </p>
-        <p class="your-msg">
-            <span class="your-msg">dddd ggggggggggggggggg
-            <br />
-            <i>jason ko, 3/3/10</i></span>
-            <em class="triangle"></em>
-        </p>
+        
       </div>
+
       <div id="ChatInput" class="chat-input flex">
-        <input id="MsgInput" type="text" name="msg" placeholder="msg" />
-        <button id="Send">send</button>
+        <input disabled="disabled" id="MsgInput" type="text" name="msg" placeholder="msg" />
+        <button disabled="disabled" id="Send">send</button>
       </div>
-    </div>
-  </div>
+    </div><!-- ChatBox -->
+
+  </div><!-- Container -->
 </body>
 </html>
