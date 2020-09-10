@@ -31,4 +31,5 @@ export const addUserToList = (user) => {
 
 export const removeUserToList = (user) => {
   // remove user from $('#UserList')
+  $('#UserList').find(`li[data-uid="${user.userId}"]`).remove();
 }

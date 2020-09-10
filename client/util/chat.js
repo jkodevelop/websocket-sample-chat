@@ -1,6 +1,6 @@
 // chat update
 import * as $ from 'jquery';
-import { addUserToList } from './uistate.js';
+import { addUserToList,removeUserToList } from './uistate.js';
 
 export const msgProcessing = ($chat, msg) => {
   try{
@@ -13,6 +13,10 @@ export const msgProcessing = ($chat, msg) => {
       case 'addUser':
         systemMessage($chat, `${msgJSON.msg}`);
         addUserToList(msgJSON.user);
+        break;
+      case 'removeUser':
+        systemMessage($chat, `${msgJSON.user.name} disconnected.`);
+        removeUserToList(msgJSON.user);
         break;
       default:
         console.log('UNKNOWN: ', msgJSON);

@@ -1,7 +1,7 @@
 import "./style.scss";
 import * as $ from 'jquery';
 import { getUserId, saveUserName, saveHue } from './util/user.js';
-import { userConnected, userDisconnected, addUserToList } from './util/uistate.js';
+import { userConnected, userDisconnected } from './util/uistate.js';
 import { msgProcessing, systemMessage } from './util/chat.js';
 
 // local variable declarations

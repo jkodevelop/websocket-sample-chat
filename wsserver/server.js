@@ -52,7 +52,9 @@ wss.on('connection', function connection(client) {
   client.on('close', function onClose(req) {
     // user disconnected
     console.log('this user is disconnected: ', req, uId);
+    let user = activeUsers[uId];
     delete activeUsers[uId];
+    broadcast(wss, client, msg.delUserMsg(user));
     console.log('these people are still connected: ', activeUsers);
   });
   
