@@ -1,6 +1,7 @@
 import "./style.scss";
 import * as $ from 'jquery';
-import { getUserId, saveUserName, saveHue, getUserName } from './util/user.js';
+import { getUserId, saveUserName, saveHue, getUserName, getHue,
+removeUserName, removeHue } from './util/user.js';
 import { userConnected, userDisconnected } from './util/uistate.js';
 import { msgProcessing, systemMessage, msgFromMe } from './util/chat.js';
 
@@ -9,6 +10,49 @@ let ws;
 let $btnConnect, $btnDisconn, $btnMsgSend;
 let $inputName, $inputMsg;
 let $chatContent;
+
+
+function wsSetup(userId, name, hue){
+  // WS_PORT = 61337 / IP_ADDRESS = local machine ip // defined in webpack.definePlugin
+  // step 1: create websocket object
+  ws = new WebSocket(`ws://${IP_ADDRESS}:${WS_PORT}`);
+
+  // step 2: open a connection with our web-socket server
+  ws.addEventListener('open', () => {
+    // Send a message to the WebSocket server
+    ws.send(JSON.stringify({
+      "type":"addUser",
+      "user": {
+        "userId": userId,
+        "name": name,
+        "hue": hue,
+      },
+    }));
+    systemMessage($chatContent,'connecting to chat....');
+    userConnected(name, hue);
+
+  });
+  
+  // step 3(continuous): now we wait for messages from server
+  ws.addEventListener('message', event => {
+    // The `event` object is a typical DOM event object, and the message data sent
+    // by the server is stored in the `data` property
+    msgProcessing($chatContent, event.data);
+  });
+}
+
+function reconnect(){
+  let userName = getUserName();
+  if(userName !== null){
+    let userId = getUserId();
+    let userHue= getHue();
+    if(userHue === null){
+      userHue = Math.floor(Math.random() * 350);
+      saveHue(userHue);
+    }
+    wsSetup(userId, userName, userHue);
+  }
+}
 
 // this function runs the websocket connection and event handlers
 function connectToWS(e){
@@ -25,34 +69,7 @@ function connectToWS(e){
     const hue = Math.floor(Math.random() * 350);
     saveHue(hue);
     saveUserName(name);
-
-    // WS_PORT = 61337 / IP_ADDRESS = local machine ip // defined in webpack.definePlugin
-    // step 1: create websocket object
-    ws = new WebSocket(`ws://${IP_ADDRESS}:${WS_PORT}`);
-
-    // step 2: open a connection with our web-socket server
-    ws.addEventListener('open', () => {
-      // Send a message to the WebSocket server
-      ws.send(JSON.stringify({
-        "type":"addUser",
-        "user": {
-          "userId": userId,
-          "name": name,
-          "hue": hue,
-        },
-      }));
-      systemMessage($chatContent,'connecting to chat....');
-      userConnected(name, hue);
-
-    });
-    
-    // step 3(continuous): now we wait for messages from server
-    ws.addEventListener('message', event => {
-      // The `event` object is a typical DOM event object, and the message data sent
-      // by the server is stored in the `data` property
-      msgProcessing($chatContent, event.data);
-    });
-
+    wsSetup(userId, name, hue);
   }
 }
 
@@ -61,17 +78,16 @@ function disconnectWS(){
   if(ws){
     ws.onclose = function () {}; // disable onclose handler first
     ws.close();
-    return true;
   }
-  return false;
 }
 
 function clickDisconnect(){
   if(confirm('you want to disconnect?')){
-    if(disconnectWS()){
-      systemMessage($chatContent, 'disconnected');
-      userDisconnected();
-    }
+    disconnectWS();
+    removeHue();
+    removeUserName();
+    systemMessage($chatContent, 'disconnected');
+    userDisconnected();
   }
 }
 
@@ -107,9 +123,13 @@ function windowLoaded(e){
   $btnDisconn= $('#Disconnect');
 
   setupHandlers();
+
+  // this allows you to reconnect for whatever reason, if you didn't manually disconnect from chat
+  reconnect();
+
 } // windowLoaded 
 // Wait till html/js/css is loaded, technically not needed since all sources are bundled
 window.onload = windowLoaded;
 
 
-// window.onbeforeunload = disconnectWS;
+window.onbeforeunload = disconnectWS;
