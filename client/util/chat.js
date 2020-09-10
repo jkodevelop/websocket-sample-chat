@@ -23,6 +23,10 @@ export const msgProcessing = ($chat, msg) => {
         systemMessage($chat, `${msgJSON.user.name} disconnected.`);
         removeUserToList(msgJSON.user);
         break;
+      case 'chat':
+        let color = `hsl(${msgJSON.user.hue}, 80%, 50%)`;
+        msgFromOthers($chat, msgJSON.msg, color, msgJSON.user.name, msgJSON.dateStr);
+        break;
       default:
         console.log('UNKNOWN: ', msgJSON);
         break;
@@ -38,26 +42,36 @@ export const systemMessage = ($chat, msg) => {
   $chat.append($p);
 }
 
-export const msgFromOthers = ($chat, msg, color, user, datetime) => {
-  // for later
-  var htmlBubble = `
-  <p>
-    <span>${msg}
-    <br />
-    <i style="color:${color};">${user} ${datetime}</i></span>
-    <em class="triangle"></em>
-  </p>
-  `;
+export const getDateTimeToString = (dateObj) => {
+  return [dateObj.toLocaleDateString()," ",
+    dateObj.getHours(), ":",
+    dateObj.getMinutes(), ":",
+    dateObj.getSeconds()].join("");
 }
 
-export const msgFromMe = ($chat, msg, color, user, datetime) => {
-  // for later
-  var htmlBubble = `
-  <p class="your-msg">
-    <span class="your-msg">${msg}
-    <br />
-    <i>${user} ${datetime}</i></span>
-    <em class="triangle"></em>
-  </p>
-  `;
+export const msgFromOthers = ($chat, msg, color, username, dateStr) => {
+  var dateObj = new Date(dateStr);
+  var datetime = getDateTimeToString(dateObj);
+
+  var $br = $('<br />');
+  var $i = $(`<i style="color:${color};">${username} ${datetime}</i>`);
+  var $triangle = $('<em class="triangle"></em>');
+  var $span = $('<span></span>').text(msg);
+  $span.append($br).append($i).append($triangle);
+
+  var $p = $('<p></p>').append($span);
+  $chat.append($p);
+}
+
+export const msgFromMe = ($chat, msg, dateObj) => {
+  var datetime = getDateTimeToString(dateObj);
+
+  var $br = $('<br />');
+  var $i = $(`<i>${datetime}</i>`);
+  var $triangle = $('<em class="triangle"></em>');
+  var $span = $('<span class="your-msg"></span>').text(msg);
+  $span.append($br).append($i).append($triangle);
+
+  var $p = $('<p class="your-msg"></p>').append($span);
+  $chat.append($p);
 }

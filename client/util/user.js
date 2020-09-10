@@ -17,7 +17,7 @@ export const saveUserName = (name) => {
   localStorage.setItem('name', name);
 }
 export const getUserName = () => {
-  localStorage.getItem('name');
+  return localStorage.getItem('name');
 }
 
 export const removeHue = () => {
@@ -27,5 +27,5 @@ export const saveHue = (hue) => {
   localStorage.setItem('hue', hue);
 }
 export const getHue = () => {
-  localStorage.getItem('hue');
+  return localStorage.getItem('hue');
 }

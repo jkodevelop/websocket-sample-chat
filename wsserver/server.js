@@ -30,6 +30,11 @@ function processMsg(uId, message, client){
         // tell everyone else there is someone new
         broadcast(wss, client, msg.newUserMsg(user));
         break;
+      case 'chat':
+        let u = activeUsers[uId];
+        let message = msgJSON.msg;
+        let dateStr = msgJSON.dateStr;
+        broadcast(wss, client, msg.chat(u, message, dateStr));
       default:
         console.log('UNKNOWN: ', msgJSON);
         break;

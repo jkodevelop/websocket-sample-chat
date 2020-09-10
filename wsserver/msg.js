@@ -25,7 +25,15 @@ var msg = {
       "type": "activeUsers",
       "users": activeUsers
     });
-  }
+  },
+  chat: function(user, message, dateStr){
+    return JSON.stringify({
+      "type":"chat",
+      "msg": message,
+      user,
+      dateStr
+    });
+  },
 };
 
 module.exports = msg;

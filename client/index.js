@@ -1,8 +1,8 @@
 import "./style.scss";
 import * as $ from 'jquery';
-import { getUserId, saveUserName, saveHue } from './util/user.js';
+import { getUserId, saveUserName, saveHue, getUserName } from './util/user.js';
 import { userConnected, userDisconnected } from './util/uistate.js';
-import { msgProcessing, systemMessage } from './util/chat.js';
+import { msgProcessing, systemMessage, msgFromMe } from './util/chat.js';
 
 // local variable declarations
 let ws;
@@ -16,7 +16,7 @@ function connectToWS(e){
   
   // make sure we have a name chosen for our connection
   let name = $inputName.val();
-  if(name.trim().length == ""){
+  if(name.trim().length == 0){
     alert('Give me a display name please.');
   }else{
 
@@ -75,11 +75,27 @@ function clickDisconnect(){
   }
 }
 
+function sendMsg(){
+  let message = $inputMsg.val();
+  message = message.trim();
+  if(message.length !== 0){
+    let now = Date.now();
+    let nowDate = new Date(now);
+    msgFromMe($chatContent, message, nowDate);
+    ws.send(JSON.stringify({
+      "type":"chat",
+      "msg": message,
+      "dateStr": now,
+    }));
+    $inputMsg.val('');
+  }
+}
+
 function setupHandlers(){
   $btnConnect.on( "click", connectToWS );
   $btnDisconn.on( "click", clickDisconnect );
+  $btnMsgSend.on( "click", sendMsg );
 }
-
 
 function windowLoaded(e){
 
