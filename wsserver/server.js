@@ -60,4 +60,9 @@ wss.on('connection', function connection(client) {
   
   // when client connects for first time, the server greets them with .send
   client.send(msg.systemMsg(`You are connected!`));
+  var userList = Object.keys(activeUsers).map(function(id) {
+    return activeUsers[id];
+  });
+  client.send(msg.listActiveUsersMsg(userList));
+
 });

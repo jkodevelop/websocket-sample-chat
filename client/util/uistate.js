@@ -17,6 +17,7 @@ export const userDisconnected = (name) => {
   $('.user-step-2').addClass('hide');
   $('#MsgInput').prop('disabled',true);
   $('#Send').prop('disabled',true);
+  clearUserList();
 }
 
 export const addUserToList = (user) => {
@@ -32,4 +33,8 @@ export const addUserToList = (user) => {
 export const removeUserToList = (user) => {
   // remove user from $('#UserList')
   $('#UserList').find(`li[data-uid="${user.userId}"]`).remove();
+}
+
+export const clearUserList = () => {
+  $('#UserList').empty();
 }

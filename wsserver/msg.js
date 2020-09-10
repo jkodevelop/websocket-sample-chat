@@ -19,6 +19,12 @@ var msg = {
       "type": "removeUser",
       user
     }); 
+  },
+  listActiveUsersMsg: function(activeUsers){
+    return JSON.stringify({
+      "type": "activeUsers",
+      "users": activeUsers
+    });
   }
 };
 

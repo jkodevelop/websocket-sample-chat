@@ -10,6 +10,11 @@ export const msgProcessing = ($chat, msg) => {
       case 'server':
         systemMessage($chat, `${msgJSON.msg}`);
         break;
+      case 'activeUsers':
+        msgJSON.users.forEach((u) => {
+          addUserToList(u);
+        });
+        break;
       case 'addUser':
         systemMessage($chat, `${msgJSON.msg}`);
         addUserToList(msgJSON.user);
