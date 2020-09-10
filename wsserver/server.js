@@ -6,6 +6,14 @@ const wss = new WebSocket.Server({ port: wsPortNum });
 
 var activeUsers = {};
 
+function broadcast(wss, currentClient, data){
+  wss.clients.forEach(function each(client) {
+    if (client !== currentClient && client.readyState === WebSocket.OPEN) {
+      client.send(data);
+    }
+  });
+}
+
 // on('connection') handles when a client connects with out websocket server
 wss.on('connection', function connection(client) {
   // on('message') handles when the client sends a message
@@ -15,7 +23,10 @@ wss.on('connection', function connection(client) {
     // send message to the client that sent the original message
     let user = JSON.parse(message);
     activeUsers[uId] = user;
+    
     client.send(`Welcome: ${user.name}`);
+    broadcast(wss, client, `Please welcome: ${user.name}`);
+
     console.log('these people are connected: ', activeUsers);
   });
 
