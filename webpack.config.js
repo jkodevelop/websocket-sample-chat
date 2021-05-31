@@ -54,14 +54,7 @@ module.exports = {
     rules: [
       {
         test: /\.(css|scss)$/,
-        use: [{
-          loader: MiniCssExtractPlugin.loader,
-          options: {
-            hmr: devMode,
-            // if hmr does not work, this is a forceful method.
-            reloadAll: true,
-          },
-        }, "css-loader", "sass-loader"] // order matters here
+        use: [MiniCssExtractPlugin.loader,"css-loader","sass-loader"] // order matters here
       },
       {
         test: /\.(js|jsx)$/,

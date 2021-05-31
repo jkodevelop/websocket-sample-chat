@@ -1,46 +1,25 @@
--- vanilla websocket
-https://javascript.info/websocket#data-transfer
-https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications
-https://www.tutorialspoint.com/websockets/websockets_javascript_application.htm
-https://www.tutorialspoint.com/html5/html5_websocket.htm
-https://javascript.info/websocket
-https://flaviocopes.com/websockets/
+# Sample WebSocket Chat [2021]
+This is a sample project of a web chat using **WebSocket**. The repo history includes a simple steps guide for adding different functions on top of basic server/client setup. **webpack** is used for build/bundler for the client side code. **ws** is the module used for the server websocket handling.
 
-https://blog.logrocket.com/websockets-tutorial-how-to-go-real-time-with-node-and-react-8e4693fbf843/
-https://www.hackdoor.io/articles/6xQkgQo4/differences-between-websockets-and-socketio
+note: this is a reference project for using **WebSocket**, it is not ready for production deployment.
 
--- ws
-https://github.com/websockets/ws
-https://stackoverflow.blog/2019/12/18/websockets-for-fun-and-profit/
-https://www.ably.io/blog/websockets-vs-sse/
+### prerequisite:
+1. node 12+
+3. make sure to run `npm install` to install the package
 
-https://www.html5rocks.com/en/tutorials/websockets/basics/
+## Development
+`npm start` to start the server and client
 
--- socket.io 
-https://github.com/socketio/socket.io
-https://codeburst.io/why-you-don-t-need-socket-io-6848f1c871cd
+For development these libraries are used/enabled:
+- ws (handling WebSocket)
+- nodemon
+- webpack
+- jQuery 3^
 
--- general
-https://blog.bitsrc.io/8-node-js-web-socket-libraries-for-2018-818e7e5b67cf
-https://www.google.com/search?q=websocket+2020&oq=websocket+2020&aqs=chrome..69i57j0.1991j0j7&sourceid=chrome&ie=UTF-8
+`./wsserver` folder controls the server side code
+`./client` folder controls the client side code
 
--- google cloud
-https://cloud.google.com/solutions/real-time-gaming-with-node-js-websocket
+**nodemon** is used for watching and reloading server side development, **webpack** is used for watching and serving changes to the client side.
 
--- new?
-https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API
-
--- game
-https://dev.to/sauravmh/building-a-multiplayer-game-using-websockets-1n63
-
--- nodemon
-https://www.digitalocean.com/community/tutorials/workflow-nodemon
-
-
--- tracking users
-https://medium.com/@willrigsbee/how-to-keep-track-of-clients-with-websockets-1a018c23bbfc
-
-
--- read (flexbox css)
-https://medium.com/quick-code/building-a-chat-application-using-flexbox-e6936c3057ef
-https://bilianavaleva.com/conversational-ui-with-flexbox/
+## Guide
+Please use git history to see the steps and changes of this project.
